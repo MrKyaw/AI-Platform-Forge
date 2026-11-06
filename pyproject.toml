@@ -1,0 +1,46 @@
+[project]
+name = "ai-platform-forge"
+version = "0.1.0"
+description = "A local document workspace with grounded answers from Ollama."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "pydantic>=2.10,<3",
+  "httpx>=0.28,<1", "python-multipart>=0.0.20,<1", "jinja2>=3.1.6,<4",
+  "pymupdf>=1.25,<2", "opentelemetry-sdk>=1.30,<2"
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3,<10", "pytest-asyncio>=0.25,<2", "pytest-cov>=6,<8",
+  "ruff>=0.11,<1", "mypy>=1.15,<2", "pip-audit>=2.9,<3",
+  "playwright>=1.51,<2"
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+exclude = [".venv", ".cache"]
+
+[[tool.mypy.overrides]]
+module = ["pymupdf.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+markers = ["browser: browser-level acceptance tests"]
+
+[tool.coverage.run]
+source = ["forge"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
