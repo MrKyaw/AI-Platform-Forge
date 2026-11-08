@@ -4,6 +4,8 @@ Read local documents with an AI model, then check the passages behind its answer
 
 The application uses FastAPI, SQLite full-text search, local embeddings, and Ollama. It combines keyword and vector rankings, keeps page references, and checks structured answers and source quotes before displaying answer text. A checked citation can still be used incorrectly by a model; read the source before relying on an answer.
 
+Current release: `0.1.0`. See the [releases](https://github.com/MrKyaw/AI-Platform-Forge/releases) and [changelog](docs/Results.md).
+
 ## Get started
 
 You need Python 3.12 (or allow uv to download it), `uv`, Ollama, and Tesseract with English language data on PATH. Node is used only for JavaScript syntax checks. Chromium is downloaded locally for browser tests. The initial model downloads are roughly 3 GB; allow additional disk space for Python packages and test browsers. Low-memory machines may be slow, especially during first model load.
